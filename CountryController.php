@@ -8,6 +8,7 @@ use app\models\CountrySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\RedisCacheProvider;
 
 /**
  * CountryController implements the CRUD actions for Country model.
@@ -35,13 +36,27 @@ class CountryController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CountrySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $redisCacheProvider = new RedisCacheProvider();
+        $keyCache = $redisCacheProvider->keyFromQueryParams();
+        $redisCache = $redisCacheProvider->get($keyCache);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if($redisCache === false){
+            $searchModel = new CountrySearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            $viewParams =[
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ];  
+            
+            $redisCacheProvider->set($keyCache, $viewParams);
+            }else{     
+                $viewParams = $redisCache;
+                // В целях тестирования. Удаляем из кеша, чтобы в следующий раз замерить скорость загрузки без учета кеша
+                $redisCacheProvider->del($keyCache);
+        };
+
+        return $this->render('index', $viewParams);
     }
 
     /**
@@ -54,7 +69,7 @@ class CountryController extends Controller
     {
         $model = $this->findModel($id);
 
-        $model->setDb();
+        // $model->setDb();
 
         return $this->render('view', [
             'model' => $model,
@@ -71,7 +86,7 @@ class CountryController extends Controller
         $model = new Country();
 
         if($model->load(Yii::$app->request->post())){
-            $model->setDb();
+            // $model->setDb();
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->code]);
             }
@@ -93,7 +108,7 @@ class CountryController extends Controller
     {
         $model = $this->findModel($id);
 
-        $model->setDb();
+        // $model->setDb();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->code]);
@@ -115,7 +130,7 @@ class CountryController extends Controller
     {
         $model = $this->findModel($id);
 
-        $model->setDb();
+        // $model->setDb();
 
         $model->delete();
 
