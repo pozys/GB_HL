@@ -1,0 +1,27 @@
+drwxrwxr-x. 10 vagrant vagrant   4096 Dec 30 18:59 .
+drwxrwxrwx.  4 root    root        50 Dec 13 16:56 ..
+drwxrwxr-x. 10 vagrant vagrant    160 Nov 10 11:08 backend
+-rw-rw-r--.  1 vagrant vagrant     43 Nov 10 11:08 .bowerrc
+-rw-rw-r--.  1 vagrant vagrant    167 Nov 10 11:08 codeception.yml
+drwxrwxr-x.  8 vagrant vagrant    113 Nov 10 11:08 common
+-rw-rw-r--.  1 vagrant vagrant   1497 Dec 16 16:37 composer.json
+-rw-rw-r--.  1 vagrant vagrant 194503 Dec 16 16:37 composer.lock
+drwxrwxr-x.  7 vagrant vagrant     86 Nov 10 11:08 console
+-rw-rw-r--.  1 vagrant vagrant    864 Nov 10 11:08 docker-compose.yml
+drwxrwxr-x.  4 vagrant vagrant     46 Nov 10 11:08 environments
+drwxrwxr-x. 10 vagrant vagrant    160 Nov 10 11:08 frontend
+-rw-rw-r--.  1 vagrant vagrant    627 Nov 10 11:08 .gitignore
+-rwxr-xr-x.  1 vagrant vagrant  10194 Nov 10 11:08 init
+-rw-rw-r--.  1 vagrant vagrant    319 Nov 10 11:08 init.bat
+-rw-rw-r--.  1 vagrant vagrant   1524 Nov 10 11:08 LICENSE.md
+drwxr-xr-x   3 nginx   nginx       34 Dec 16 17:59 log
+lrwxrwxrwx   1 vagrant vagrant     33 Dec 30 18:59 pozys-local-root -> /var/www/pozys.local/frontend/web
+-rw-rw-r--.  1 vagrant vagrant   3061 Nov 10 11:08 README.md
+-rw-rw-r--.  1 vagrant vagrant   5791 Nov 10 11:08 requirements.php
+drwxrwxr-x.  5 vagrant vagrant     50 Nov 10 11:08 vagrant
+-rw-rw-r--.  1 vagrant vagrant   2914 Nov 10 11:08 Vagrantfile
+drwxrwxr-x. 28 vagrant vagrant   4096 Dec 16 16:37 vendor
+-rwxr-xr-x.  1 vagrant vagrant    717 Dec 13 17:27 yii
+-rw-rw-r--.  1 vagrant vagrant    323 Nov 10 11:08 yii.bat
+-rwxr-xr-x.  1 vagrant vagrant    928 Dec 13 17:27 yii_test
+-rw-rw-r--.  1 vagrant vagrant    328 Dec 13 17:27 yii_test.bat
