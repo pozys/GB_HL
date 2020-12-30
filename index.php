@@ -1,4 +1,8 @@
 <?php
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Memcached;
+
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
@@ -14,13 +18,12 @@ $config = yii\helpers\ArrayHelper::merge(
     require __DIR__ . '/../config/main-local.php'
 );
 
-if(YII_DEBUG){
-    error_reporting(E_ALL);
-    ini_set('display_errors', 0);
-}
-
+var_dump($_SERVER['SERVER_ADDR']);
+die;
+$time_start = hrtime(true);
 (new yii\web\Application($config))->run();
+$time_end = hrtime(true);
+$log = new Logger('Page_download');
+$log->pushHandler(new StreamHandler(__DIR__ . '/../../log/my.log', Logger::DEBUG));
+$log->info('Страница загружена за ' . ($time_end - $time_start));
 
-if(YII_DEBUG){
-    trigger_error( "Загрузка страницы завершена" );
-}
